@@ -252,11 +252,11 @@ class OpenAPITool(Tool):
                 if e.response.text:
                     error_message += f" - {e.response.text}"
 
-            raise ValueError(error_message)
+            raise ToolError(error_message)
 
         except httpx.RequestError as e:
             # Handle request errors (connection, timeout, etc.)
-            raise ValueError(f"Request error: {str(e)}")
+            raise ToolError(f"Request error: {str(e)}")
 
     async def run(
         self, arguments: dict[str, Any]
